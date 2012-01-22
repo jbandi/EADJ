@@ -1,0 +1,1 @@
+mvn clean integration-test

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{albumPresenter.id}"/>
+        <f:event type="preRenderView" listener="#{albumPresenter.loadAlbum}" />
+    </f:metadata>
+
+    <ui:define name="content">
+
+        <h2><h:outputLabel id="name" value="#{albumPresenter.album.name}"/></h2>
+
+
+        <h:panelGroup rendered="#{empty albumPresenter.album}">
+            <em>No album found!</em>
+        </h:panelGroup>
+
+        <h:graphicImage value="/resources/gfx/#{albumPresenter.album.albumArtUrl}" alt="Album Art"/>
+
+        <table>
+            <tr>
+                <th style="text-align: right;">
+            <h:outputLabel for="name" value="Genre:"/>
+            </th>
+            <td>
+            <h:outputLabel id="genre" value="#{albumPresenter.album.genre.name}"/>
+            </td>
+            </tr>
+            <tr>
+                <th style="text-align: right;">
+            <h:outputLabel for="price" value="Price:"/>
+            </th>
+            <td>
+            <h:outputLabel id="price" value="#{albumPresenter.album.price}"/>
+            </td>
+            </tr>
+            <h:form>
+                <tr>
+                <h:commandButton id="s" action="#{shoppingCartPresenter.addAlbumToCart(albumPresenter.album)}" value="Add to cart!">
+                </h:commandButton>
+                </tr>
+            </h:form>
+        </table>
+    </ui:define>
+</ui:composition>

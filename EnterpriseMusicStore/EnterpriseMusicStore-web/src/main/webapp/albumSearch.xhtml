@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="genre" value="#{searchPresenter.genreName}"/>
+        <f:viewParam name="title" value="#{searchPresenter.title}"/>
+        <f:event type="preRenderView" listener="#{searchPresenter.performSearch}" />
+    </f:metadata>
+
+    <ui:define name="content">
+        <h2>Albums</h2>
+        <h:form>
+            <h:panelGroup rendered="#{empty searchPresenter.result}" id="msg_nothing">
+                <em>Sorry, no albums found!</em>
+            </h:panelGroup>
+            <ul id="album-list">
+                <ui:repeat value="#{searchPresenter.result}" var="_album">
+                    <li>
+                        <a href="albumDetail.xhtml?id=#{_album.id}">
+                            <img alt="#{_album.name}" src="/EnterpriseMusicStore-web/resources/gfx/#{_album.albumArtUrl}" />
+                            <span>
+                                <h:outputText value="#{_album.name}" />
+                            </span>
+                        </a>
+                    </li>
+                </ui:repeat>
+            </ul>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

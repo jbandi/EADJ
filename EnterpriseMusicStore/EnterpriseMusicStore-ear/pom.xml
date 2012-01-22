@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+        <artifactId>EnterpriseMusicStore</artifactId>
+        <groupId>org.musicstore</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+  <groupId>org.musicstore</groupId>
+  <artifactId>EnterpriseMusicStore-ear</artifactId>
+  <packaging>ear</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>EnterpriseMusicStore-ear JavaEE6 Assembly</name>
+  <url>http://maven.apache.org</url>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ear-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+            <version>6</version>
+        </configuration>
+      </plugin>
+    </plugins>
+    <finalName>EnterpriseMusicStore-ear</finalName>
+  </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.musicstore</groupId>
+            <artifactId>EnterpriseMusicStore-ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>org.musicstore</groupId>
+            <artifactId>EnterpriseMusicStore-web</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>org.musicstore</groupId>
+            <artifactId>EnterpriseMusicStore-web-jsfunit</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+
+    </dependencies>
+    <properties>
+        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
+    </properties>
+</project>
