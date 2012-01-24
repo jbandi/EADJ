@@ -35,10 +35,6 @@ public class BookDaoTest {
 		p.put("movieDatabase.JdbcDriver", "org.hsqldb.jdbcDriver");
 		p.put("movieDatabase.JdbcUrl", "jdbc:hsqldb:mem:moviedb");
 
-//		p.put("movieDatabaseUnmanaged", "new://Resource?type=DataSource");
-//		p.put("movieDatabaseUnmanaged.JdbcDriver", "org.hsqldb.jdbcDriver");
-//		p.put("movieDatabaseUnmanaged.JdbcUrl", "jdbc:hsqldb:mem:moviedb");
-//		p.put("movieDatabaseUnmanaged.JtaManaged", "false");
 
 		p.put("openejb.embedded.initialcontext.close", "destroy");
 		p.put("openejb.tempclassloader.skip", "annotations");
