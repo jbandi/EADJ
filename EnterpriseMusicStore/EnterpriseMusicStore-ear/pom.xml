@@ -21,6 +21,8 @@
         <version>2.9</version>
         <configuration>
             <version>6</version>
+            <generateApplicationXml>true</generateApplicationXml>
+            <applicationName>EnterpriseMusicStore</applicationName>
             <modules>
                 <webModule>
                     <groupId>org.musicstore</groupId>
