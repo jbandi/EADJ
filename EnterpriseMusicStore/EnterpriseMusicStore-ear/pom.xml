@@ -40,7 +40,7 @@
           </configuration>
       </plugin>
     </plugins>
-    <finalName>EnterpriseMusicStore-ear.ear</finalName>
+    <finalName>EnterpriseMusicStore-ear.ear</finalName> <!-- For exploded deployment from IntelliJ to JBoss the directory has to end with .ear -->
   </build>
     <dependencies>
         <dependency>
