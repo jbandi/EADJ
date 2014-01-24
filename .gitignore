@@ -13,6 +13,9 @@ m2-repository*
 *.iws
 nbactions.xml
 
+.idea/
+
+
 target
 musicstoredb
 logs

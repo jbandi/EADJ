@@ -7,12 +7,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.ejb.EJB;
 import org.musicstore.ShoppingCartService;
 import org.musicstore.model.entities.Album;
 
 @ManagedBean @SessionScoped
 public class ShoppingCartPresenter {
 
+    @EJB
     ShoppingCartService shoppingCartService;
     private List<Album> albumsInCart = new ArrayList<Album>();
 

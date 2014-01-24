@@ -1,6 +1,8 @@
 package org.musicstore.repositories;
 
-public class AlbumQuery {
+import java.io.Serializable;
+
+public class AlbumQuery implements Serializable {
 
     private String title;
     private String genreName;
