@@ -1,10 +1,9 @@
 package org.musicstore;
 
 import org.musicstore.model.entities.Album;
+import org.musicstore.org.musicstore.businesslogic.PriceCalculator;
 import org.musicstore.repositories.AlbumRepository;
-import org.musicstore.repositories.AlbumRepositoryImpl;
 
-import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
@@ -19,6 +18,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService, Serializabl
 
     @Inject
     AlbumRepository albumRepository;
+
+    @Inject
+    PriceCalculator priceCalculator;
+
     private List<Album> albumsInCart = new ArrayList<>();
 
     @Override
@@ -33,10 +36,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService, Serializabl
 
     @Override
     public double getTotalAmount() {
-        double sum = 0;
-        for(Album album : albumsInCart)
-            sum += album.getPrice();
 
+        double sum = priceCalculator.calculatePrice(albumsInCart);
         return sum;
     }
     
