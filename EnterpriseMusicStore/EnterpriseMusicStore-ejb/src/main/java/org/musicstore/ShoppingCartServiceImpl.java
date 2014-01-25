@@ -1,19 +1,22 @@
 package org.musicstore;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.Remote;
-import javax.ejb.Stateful;
 import org.musicstore.model.entities.Album;
 import org.musicstore.repositories.AlbumRepository;
 
-@Stateful
-@Remote(ShoppingCartService.class)
-public class ShoppingCartServiceImpl implements ShoppingCartService {
+import javax.ejb.EJB;
+import javax.ejb.Local;
+import javax.ejb.Stateful;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+@Stateful @SessionScoped
+@Local(ShoppingCartService.class)
+public class ShoppingCartServiceImpl implements ShoppingCartService, Serializable {
 
     @EJB AlbumRepository albumRepository;
-    private List<Album> albumsInCart = new ArrayList<Album>();
+    private List<Album> albumsInCart = new ArrayList<>();
 
     @Override
     public void addAlbum(Album album) {

@@ -1,14 +1,16 @@
 package org.musicstore.web;
 
-import java.util.List;
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import org.musicstore.model.entities.Album;
 import org.musicstore.repositories.AlbumQuery;
 import org.musicstore.repositories.AlbumRepository;
 
-@ManagedBean @RequestScoped
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+import java.util.List;
+
+@Named
+@RequestScoped
 public class SearchPresenter {
 
     @EJB private AlbumRepository albumRepository;

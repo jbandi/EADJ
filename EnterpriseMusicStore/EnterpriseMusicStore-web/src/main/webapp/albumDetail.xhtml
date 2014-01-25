@@ -40,7 +40,8 @@
             </tr>
             <h:form>
                 <tr>
-                <h:commandButton id="s" action="#{shoppingCartPresenter.addAlbumToCart(albumPresenter.album)}" value="Add to cart!">
+                <h:commandButton id="s" action="#{albumPresenter.addAlbumToCart(albumPresenter.id)}" value="Add to cart!">
+                    <f:param name="id" value="#{param['id']}" />
                 </h:commandButton>
                 </tr>
             </h:form>
