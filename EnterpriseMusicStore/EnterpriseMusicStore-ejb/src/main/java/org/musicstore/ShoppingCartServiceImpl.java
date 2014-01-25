@@ -2,11 +2,13 @@ package org.musicstore;
 
 import org.musicstore.model.entities.Album;
 import org.musicstore.repositories.AlbumRepository;
+import org.musicstore.repositories.AlbumRepositoryImpl;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,8 @@ import java.util.List;
 @Local(ShoppingCartService.class)
 public class ShoppingCartServiceImpl implements ShoppingCartService, Serializable {
 
-    @EJB AlbumRepository albumRepository;
+    @Inject
+    AlbumRepository albumRepository;
     private List<Album> albumsInCart = new ArrayList<>();
 
     @Override

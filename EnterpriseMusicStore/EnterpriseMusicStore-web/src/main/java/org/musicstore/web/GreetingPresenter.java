@@ -4,9 +4,9 @@ import org.musicstore.Greeter;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
 
-@Named
+@ManagedBean
 @RequestScoped
 public class GreetingPresenter {
 

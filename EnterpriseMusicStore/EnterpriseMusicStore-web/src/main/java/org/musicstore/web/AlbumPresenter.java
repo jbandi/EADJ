@@ -3,18 +3,19 @@ package org.musicstore.web;
 import org.musicstore.ShoppingCartService;
 import org.musicstore.model.entities.Album;
 import org.musicstore.repositories.AlbumRepository;
+import org.musicstore.repositories.AlbumRepositoryImpl;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 
-@Named
+@ManagedBean
 @RequestScoped
 public class AlbumPresenter implements Serializable {
 
-    @EJB AlbumRepository albumRepository;
+    @Inject AlbumRepository albumRepository;
     @Inject ShoppingCartService shoppingCartService;
 
     Album album;

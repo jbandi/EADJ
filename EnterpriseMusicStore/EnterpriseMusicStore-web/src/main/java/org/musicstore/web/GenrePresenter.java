@@ -6,10 +6,10 @@ import org.musicstore.repositories.GenreRepository;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
 import java.util.List;
 
-@Named
+@ManagedBean
 @RequestScoped
 public class GenrePresenter {
 

@@ -16,12 +16,11 @@ public class EjbTest extends org.apache.cactus.ServletTestCase {
          jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
 
         InitialContext jndi = new InitialContext(jndiProperties);
-        Greeter greeter = (Greeter) jndi.lookup("ejb:EnterpriseMusicStore/EnterpriseMusicStoreEJB//GreeterService!org.musicstore.Greeter");
-//        Greeter greeter = (Greeter) jndi.lookup("java:app/EnterpriseMusicStoreEJB/GreeterService");
+        //  Greeter greeter = (Greeter) jndi.lookup("ejb:EnterpriseMusicStore/EnterpriseMusicStoreEJB//GreeterService!org.musicstore.Greeter");
+        Greeter greeter = (Greeter) jndi.lookup("java:app/EnterpriseMusicStoreEJB/GreeterService");
 
         String test = greeter.getMessage();
         
         assertEquals("Greetings from EJB!", test);
      }
-
 }

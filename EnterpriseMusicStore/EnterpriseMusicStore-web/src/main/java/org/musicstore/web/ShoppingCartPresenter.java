@@ -4,13 +4,13 @@ import org.musicstore.ShoppingCartService;
 import org.musicstore.model.entities.Album;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named
+@ManagedBean
 @SessionScoped
 public class ShoppingCartPresenter implements Serializable {
 

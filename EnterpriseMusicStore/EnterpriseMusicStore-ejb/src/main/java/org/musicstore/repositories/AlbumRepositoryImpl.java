@@ -1,8 +1,11 @@
 package org.musicstore.repositories;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.Remote;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,8 +14,8 @@ import javax.persistence.criteria.Root;
 import org.musicstore.model.entities.Album;
 
 @Stateless
-@Remote(AlbumRepository.class)
-public class AlbumRepositoryImpl implements AlbumRepository {
+@Local(AlbumRepository.class)
+public class AlbumRepositoryImpl implements AlbumRepository, Serializable {
 
     @PersistenceContext(unitName = "EnterpriseMusicStore")
     private EntityManager em;
