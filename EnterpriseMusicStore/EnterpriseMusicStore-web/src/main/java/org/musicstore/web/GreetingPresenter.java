@@ -3,9 +3,12 @@ package org.musicstore.web;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
+
 import org.musicstore.Greeter;
 
-@ManagedBean @RequestScoped
+@Named
+@RequestScoped
 public class GreetingPresenter {
 
     @EJB Greeter greeter;

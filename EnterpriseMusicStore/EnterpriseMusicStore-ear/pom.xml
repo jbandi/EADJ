@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
         <artifactId>EnterpriseMusicStore</artifactId>
         <groupId>org.musicstore</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-  <groupId>org.musicstore</groupId>
-  <artifactId>EnterpriseMusicStore-ear</artifactId>
-  <packaging>ear</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>EnterpriseMusicStore-ear JavaEE6 Assembly</name>
-  <url>http://maven.apache.org</url>
+    <groupId>org.musicstore</groupId>
+    <artifactId>EnterpriseMusicStore-ear</artifactId>
+    <packaging>ear</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>EnterpriseMusicStore-ear JavaEE6 Assembly</name>
+    <url>http://maven.apache.org</url>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-ear-plugin</artifactId>
-        <version>2.9</version>
-        <configuration>
-            <version>6</version>
-            <generateApplicationXml>true</generateApplicationXml>
-            <applicationName>EnterpriseMusicStore</applicationName>
-            <modules>
-                <webModule>
-                    <groupId>org.musicstore</groupId>
-                    <artifactId>EnterpriseMusicStore-web</artifactId>
-                    <contextRoot>/musicstore</contextRoot>
-                </webModule>
-            </modules>
-        </configuration>
-      </plugin>
-      <!-- JBoss AS plugin to deploy ear -->
-      <plugin>
-          <groupId>org.jboss.as.plugins</groupId>
-          <artifactId>jboss-as-maven-plugin</artifactId>
-          <version>${version.jboss.maven.plugin}</version>
-          <configuration>
-              <skip>false</skip>
-          </configuration>
-      </plugin>
-    </plugins>
-    <finalName>EnterpriseMusicStore-ear.ear</finalName> <!-- For exploded deployment from IntelliJ to JBoss the directory has to end with .ear -->
-  </build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <version>6</version>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <applicationName>EnterpriseMusicStore</applicationName>
+                    <modules>
+                        <webModule>
+                            <groupId>org.musicstore</groupId>
+                            <artifactId>EnterpriseMusicStore-web-jsfunit</artifactId>
+                            <contextRoot>/musicstore</contextRoot>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+            <!-- JBoss AS plugin to deploy ear -->
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>${version.jboss.maven.plugin}</version>
+                <configuration>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+        <finalName>EnterpriseMusicStore-ear.ear</finalName> <!-- For exploded deployment from IntelliJ to JBoss the directory has to end with .ear -->
+    </build>
     <dependencies>
         <dependency>
             <groupId>org.musicstore</groupId>
@@ -51,21 +51,99 @@
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
         </dependency>
-        <dependency>
-            <groupId>org.musicstore</groupId>
-            <artifactId>EnterpriseMusicStore-web</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>war</type>
-        </dependency>
-        <dependency>
-            <groupId>org.musicstore</groupId>
-            <artifactId>EnterpriseMusicStore-web-jsfunit</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>war</type>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.musicstore</groupId>-->
+        <!--<artifactId>EnterpriseMusicStore-web</artifactId>-->
+        <!--<version>1.0-SNAPSHOT</version>-->
+        <!--<type>war</type>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.musicstore</groupId>-->
+        <!--<artifactId>EnterpriseMusicStore-web-jsfunit</artifactId>-->
+        <!--<version>1.0-SNAPSHOT</version>-->
+        <!--<type>war</type>-->
+        <!--</dependency>-->
 
     </dependencies>
-    <properties>
-        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
-    </properties>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <activation>
+                <activeByDefault>true</activeByDefault> <!-- This profile is deactivated if another profile is activated -->
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.musicstore</groupId>
+                    <artifactId>EnterpriseMusicStore-web</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                    <type>war</type>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-ear-plugin</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <version>6</version>
+                            <generateApplicationXml>true</generateApplicationXml>
+                            <applicationName>EnterpriseMusicStore</applicationName>
+                            <modules>
+                                <webModule>
+                                    <groupId>org.musicstore</groupId>
+                                    <artifactId>EnterpriseMusicStore-web</artifactId>
+                                    <contextRoot>/musicstore</contextRoot>
+                                </webModule>
+                            </modules>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>jsfunit</id>
+            <!--
+             This profile uses the jsfunit WAR instead of the production WAR to enable tests
+            -->
+            <activation>
+                <property>
+                    <name>environment.type</name>
+                    <value>jsfunit</value>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.musicstore</groupId>
+                    <artifactId>EnterpriseMusicStore-web-jsfunit</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                    <type>war</type>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-ear-plugin</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <version>6</version>
+                            <generateApplicationXml>true</generateApplicationXml>
+                            <applicationName>EnterpriseMusicStore</applicationName>
+                            <modules>
+                                <webModule>
+                                    <groupId>org.musicstore</groupId>
+                                    <artifactId>EnterpriseMusicStore-web-jsfunit</artifactId>
+                                    <contextRoot>/musicstore</contextRoot>
+                                </webModule>
+                            </modules>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
 </project>
