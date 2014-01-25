@@ -14,6 +14,8 @@ import org.junit.Test;
 import org.musicstore.GreeterService;
 import org.musicstore.ShoppingCartService;
 import org.musicstore.model.entities.Album;
+import org.musicstore.org.musicstore.businesslogic.PriceCalculator;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -26,7 +28,8 @@ public class OrderPriceCalculationTest {
         Album album2 = new Album();
         album2.setPrice(10d);
 
-        ShoppingCartService shoppingCartService = new ShoppingCartServiceImpl();
+        ShoppingCartServiceImpl shoppingCartService = new ShoppingCartServiceImpl();
+        shoppingCartService.setPriceCalculator(new PriceCalculator());
 
         shoppingCartService.addAlbum(album1);
         shoppingCartService.addAlbum(album2);

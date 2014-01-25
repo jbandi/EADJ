@@ -17,10 +17,14 @@ import java.util.List;
 public class ShoppingCartServiceImpl implements ShoppingCartService, Serializable {
 
     @Inject
-    AlbumRepository albumRepository;
+    private AlbumRepository albumRepository;
+
+    private PriceCalculator priceCalculator;
 
     @Inject
-    PriceCalculator priceCalculator;
+    public void setPriceCalculator(PriceCalculator priceCalculator) {
+        this.priceCalculator = priceCalculator;
+    }
 
     private List<Album> albumsInCart = new ArrayList<>();
 
