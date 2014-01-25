@@ -76,7 +76,7 @@
                             <systemProperties>
                                 <property>
                                     <name>cactus.contextURL</name>
-                                    <value>http://localhost:8080/${artifactId}</value>
+                                    <value>http://localhost:8080/musicstore</value>
                                 </property>
                             </systemProperties>
                         </configuration>
