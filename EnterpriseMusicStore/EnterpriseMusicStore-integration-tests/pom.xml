@@ -12,7 +12,8 @@
     <version>1.0-SNAPSHOT</version>
     <name>EnterpriseMusicStore-integration-tests</name>
     <url>http://maven.apache.org</url>
-    <dependencies>
+
+     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -27,12 +28,63 @@
             <scope>test</scope>
         </dependency>
 
-        <!--dependency>
-            <groupId>org.glassfish.appclient</groupId>
-            <artifactId>gf-client-module</artifactId>
-            <version>3.1.1</version>
-            <scope>test</scope>
-        </dependency-->
+        <!-- Import the transaction spec API, we use runtime scope because we aren't using any direct
+         reference to the spec API in our client code -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+            <version>1.0.1.Final</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Import the EJB 3.1 API, we use runtime scope because we aren't using any direct
+         reference to EJB spec API in our client code -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <version>1.0.2.Final</version>
+            <scope>runtime</scope>
+        </dependency>
+
+          <!-- JBoss EJB client API jar. We use runtime scope because the EJB client API
+         isn't directly used in this example. We just need it in our runtime classpath -->
+        <dependency>
+            <groupId>org.jboss</groupId>
+            <artifactId>jboss-ejb-client</artifactId>
+            <version>1.0.16.Final</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- client communications with the server use XNIO -->
+        <dependency>
+            <groupId>org.jboss.xnio</groupId>
+            <artifactId>xnio-api</artifactId>
+            <version>3.0.7.GA</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.xnio</groupId>
+            <artifactId>xnio-nio</artifactId>
+            <version>3.0.7.GA</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Remote EJB accesses can be secured -->
+        <dependency>
+            <groupId>org.jboss.sasl</groupId>
+            <artifactId>jboss-sasl</artifactId>
+            <version>1.0.3.Final</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- data serialization for invoking remote EJBs -->
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling-river</artifactId>
+            <version>1.3.16.GA</version>
+            <scope>runtime</scope>
+        </dependency>
 
 
     </dependencies>
