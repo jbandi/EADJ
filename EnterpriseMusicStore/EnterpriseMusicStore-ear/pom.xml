@@ -13,8 +13,29 @@
     <name>EnterpriseMusicStore-ear JavaEE6 Assembly</name>
     <url>http://maven.apache.org</url>
 
+    <properties>
+        <web-artefactId>EnterpriseMusicStore-web</web-artefactId>
+    </properties>
+
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <version>6</version>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <applicationName>EnterpriseMusicStore</applicationName>
+                    <modules>
+                        <webModule>
+                            <groupId>org.musicstore</groupId>
+                            <artifactId>${web-artefactId}</artifactId>
+                            <contextRoot>/musicstore</contextRoot>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
             <!-- JBoss AS plugin to deploy ear -->
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
@@ -34,85 +55,24 @@
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
         </dependency>
+        <dependency>
+            <groupId>org.musicstore</groupId>
+            <artifactId>${web-artefactId}</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
 
     </dependencies>
 
     <profiles>
         <profile>
-            <id>prod</id>
-            <activation>
-                <activeByDefault>true</activeByDefault> <!-- This profile is deactivated if another profile is activated -->
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.musicstore</groupId>
-                    <artifactId>EnterpriseMusicStore-web</artifactId>
-                    <version>1.0-SNAPSHOT</version>
-                    <type>war</type>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-ear-plugin</artifactId>
-                        <version>2.9</version>
-                        <configuration>
-                            <version>6</version>
-                            <generateApplicationXml>true</generateApplicationXml>
-                            <applicationName>EnterpriseMusicStore</applicationName>
-                            <modules>
-                                <webModule>
-                                    <groupId>org.musicstore</groupId>
-                                    <artifactId>EnterpriseMusicStore-web</artifactId>
-                                    <contextRoot>/musicstore</contextRoot>
-                                </webModule>
-                            </modules>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>jsfunit</id>
             <!--
              This profile uses the jsfunit WAR instead of the production WAR to enable tests
             -->
-            <activation>
-                <property>
-                    <name>environment.type</name>
-                    <value>jsfunit</value>
-                </property>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.musicstore</groupId>
-                    <artifactId>EnterpriseMusicStore-web-jsfunit</artifactId>
-                    <version>1.0-SNAPSHOT</version>
-                    <type>war</type>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-ear-plugin</artifactId>
-                        <version>2.9</version>
-                        <configuration>
-                            <version>6</version>
-                            <generateApplicationXml>true</generateApplicationXml>
-                            <applicationName>EnterpriseMusicStore</applicationName>
-                            <modules>
-                                <webModule>
-                                    <groupId>org.musicstore</groupId>
-                                    <artifactId>EnterpriseMusicStore-web-jsfunit</artifactId>
-                                    <contextRoot>/musicstore</contextRoot>
-                                </webModule>
-                            </modules>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <properties>
+                <web-artefactId>EnterpriseMusicStore-web-jsfunit</web-artefactId>
+            </properties>
         </profile>
     </profiles>
 
