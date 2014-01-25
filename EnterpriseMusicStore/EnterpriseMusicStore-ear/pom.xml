@@ -15,23 +15,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-ear-plugin</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <version>6</version>
-                    <generateApplicationXml>true</generateApplicationXml>
-                    <applicationName>EnterpriseMusicStore</applicationName>
-                    <modules>
-                        <webModule>
-                            <groupId>org.musicstore</groupId>
-                            <artifactId>EnterpriseMusicStore-web-jsfunit</artifactId>
-                            <contextRoot>/musicstore</contextRoot>
-                        </webModule>
-                    </modules>
-                </configuration>
-            </plugin>
             <!-- JBoss AS plugin to deploy ear -->
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
@@ -51,18 +34,6 @@
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.musicstore</groupId>-->
-        <!--<artifactId>EnterpriseMusicStore-web</artifactId>-->
-        <!--<version>1.0-SNAPSHOT</version>-->
-        <!--<type>war</type>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.musicstore</groupId>-->
-        <!--<artifactId>EnterpriseMusicStore-web-jsfunit</artifactId>-->
-        <!--<version>1.0-SNAPSHOT</version>-->
-        <!--<type>war</type>-->
-        <!--</dependency>-->
 
     </dependencies>
 
