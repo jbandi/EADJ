@@ -68,7 +68,7 @@
         <profile>
             <id>jsfunit</id>
             <!--
-             This profile uses the jsfunit WAR instead of the production WAR to enable tests
+             This profile packages the jsfunit WAR instead of the production WAR to enable tests
             -->
             <properties>
                 <web-artefactId>EnterpriseMusicStore-web-jsfunit</web-artefactId>
