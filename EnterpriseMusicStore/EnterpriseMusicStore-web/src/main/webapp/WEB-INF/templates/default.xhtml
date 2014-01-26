@@ -18,7 +18,10 @@
                       <h:outputLink value="index.xhtml">Home</h:outputLink>
                   </li>
                   <li>
-                      <h:outputLink value="shoppingCart.xhtml">Cart (#{shoppingCartPresenter.itemCount})</h:outputLink>
+                      <h:outputLink value="shoppingCart.xhtml">Cart (#{shoppingCartPresenter.albumsInCart.size()})</h:outputLink>
+                  </li>
+                  <li>
+                      <h:outputLink value="orderAdmin.xhtml">Admin</h:outputLink>
                   </li>
               </ul>
           </div>

@@ -3,6 +3,7 @@ package org.musicstore.web;
 import org.musicstore.ShoppingCartService;
 import org.musicstore.model.entities.Album;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ShoppingCartPresenter implements Serializable {
 
     @Inject ShoppingCartService shoppingCartService;
@@ -24,10 +25,6 @@ public class ShoppingCartPresenter implements Serializable {
     public List<Album> getAlbumsInCart() {
         albumsInCart = shoppingCartService.getAlbumsInCart();
         return albumsInCart;
-    }
-
-    public int getItemCount() {
-        return albumsInCart.size();
     }
 
     public double getTotalAmount() {
