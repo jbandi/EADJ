@@ -1,7 +1,7 @@
 package org.musicstore;
 
 import org.musicstore.model.entities.Album;
-import org.musicstore.org.musicstore.businesslogic.PriceCalculator;
+import org.musicstore.businesslogic.PriceCalculator;
 import org.musicstore.repositories.AlbumRepository;
 
 import javax.ejb.Local;

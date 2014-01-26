@@ -3,8 +3,9 @@ package org.musicstore;
 import org.musicstore.model.entities.Album;
 import org.musicstore.model.entities.MusicOrder;
 import org.musicstore.model.entities.OrderItem;
-import org.musicstore.org.musicstore.businesslogic.PriceCalculator;
+import org.musicstore.businesslogic.PriceCalculator;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
@@ -23,14 +24,10 @@ public class OrderServiceImpl implements OrderService, Serializable {
     private EntityManager em;
 
     @Inject
-    private ShoppingCartService shoppingCartService;
-
-    private PriceCalculator priceCalculator;
+    ShoppingCartService shoppingCartService;
 
     @Inject
-    public void setPriceCalculator(PriceCalculator priceCalculator) {
-        this.priceCalculator = priceCalculator;
-    }
+    PriceCalculator priceCalculator;
 
     private MusicOrder currentOrder;
 
@@ -40,6 +37,10 @@ public class OrderServiceImpl implements OrderService, Serializable {
             currentOrder = new MusicOrder();
 
         return currentOrder;
+    }
+
+    public void setCurrentOrder(MusicOrder currentOrder) {
+        this.currentOrder = currentOrder;
     }
 
     @Override

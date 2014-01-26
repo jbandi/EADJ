@@ -1,4 +1,4 @@
-package org.musicstore.org.musicstore.businesslogic;
+package org.musicstore.businesslogic;
 
 import org.musicstore.model.entities.Album;
 import org.musicstore.model.entities.MusicOrder;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PriceCalculator implements Serializable {
 
-    private static final double DISCOUNT_FACTOR = 0.9;
+    public static final double DISCOUNT_FACTOR = 0.9;
 
     @Inject
     MusicOrderRepository musicOrderRepository;

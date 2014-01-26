@@ -48,19 +48,65 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.6.1.0</version>
+            <groupId>org.jglue.cdi-unit</groupId>
+            <artifactId>cdi-unit</artifactId>
+            <version>2.0.8</version>
             <scope>test</scope>
         </dependency>
 
         <!-- Ugly: this has to be before javaee-api, otherwise tests will not run since javaee-api does not provide runnable classes -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.faces</groupId>
+            <artifactId>jboss-jsf-api_2.1_spec</artifactId>
+            <version>2.0.9.Final</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>1.0.0.GA</version>
             <scope>test</scope>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.sun.jersey</groupId>-->
+            <!--<artifactId>jersey-test-framework</artifactId>-->
+            <!--<version>1.1.5.1</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.jboss.weld.se</groupId>-->
+            <!--<artifactId>weld-se-core</artifactId>-->
+            <!--<scope>test</scope>-->
+            <!--<version>2.1.0.Final</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>javax.enterprise</groupId>-->
+            <!--<artifactId>cdi-api</artifactId>-->
+            <!--<version>1.1.EDR1.2</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>javax</groupId>-->
+            <!--<artifactId>javaee-api</artifactId>-->
+            <!--<version>6.0</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.jboss.spec</groupId>-->
+            <!--<artifactId>jboss-javaee-6.0</artifactId>-->
+            <!--<version>3.0.2.Final-redhat-7</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.jboss.spec</groupId>-->
+            <!--<artifactId>jboss-javaee-6.0</artifactId>-->
+            <!--<version>3.0.2.Final-redhat-7</version>-->
+            <!--<type>pom</type>-->
+            <!--<scope>import</scope>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>javax</groupId>
@@ -80,17 +126,5 @@
             </testResource>
         </testResources>
     </build>
-
-    <repositories>
-        <repository>
-            <id>java.net2</id>
-            <name>Java.Net Maven2 Repository, hosts the javaee-api dependency</name>
-            <url>http://download.java.net/maven/2</url>
-        </repository>
-        <repository>
-            <id>EclipseLink Repo</id>
-            <url>http://www.eclipse.org/downloads/download.php?r=1&amp;nf=1&amp;file=/rt/eclipselink/maven.repo</url>
-        </repository>
-    </repositories>
 
 </project>

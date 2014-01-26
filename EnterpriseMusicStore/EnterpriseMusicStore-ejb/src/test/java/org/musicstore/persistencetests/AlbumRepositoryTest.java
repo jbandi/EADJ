@@ -1,4 +1,4 @@
-package org.musicstore.tests.integration;
+package org.musicstore.persistencetests;
 
 import org.musicstore.tests.support.GenreBuilder;
 import org.musicstore.tests.support.AlbumBuilder;
