@@ -17,20 +17,6 @@ public class ShoppingCartPresenter implements Serializable {
     @Inject ShoppingCartService shoppingCartService;
     private List<Album> albumsInCart = new ArrayList<Album>();
 
-//    @PostConstruct
-//    public void init() throws NamingException {
-//        InitialContext ctx = new InitialContext();
-//
-//        if (shoppingCartService == null)
-//            shoppingCartService = (ShoppingCartService) ctx.lookup("org.musicstore.ShoppingCartService");
-//    }
-
-    public String addAlbumToCart(Album album) {
-
-        shoppingCartService.addAlbum(album);
-        return "shoppingCart.xhtml?faces-redirect=true";
-    }
-
     public void loadAlbumsInCart() {
         albumsInCart = shoppingCartService.getAlbumsInCart();
     }

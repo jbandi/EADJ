@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     <persistence-unit name="EnterpriseMusicStoreTest" transaction-type="RESOURCE_LOCAL">
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>org.musicstore.model.entities.Album</class>
-        <class>org.musicstore.model.entities.Genre</class>
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jar-file>${project.build.outputDirectory}</jar-file> <!-- Apply Maven resource filtering: see POM ... (I hate Maven-Magic) -->
+        <!--<class>org.musicstore.model.entities.Album</class>-->
+        <!--<class>org.musicstore.model.entities.Genre</class>-->
+        <!--<class>org.musicstore.model.entities.MusicOrder</class>-->
+        <!--<class>org.musicstore.model.entities.OrderItem</class>-->
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
         <properties>
-            <property name="eclipselink.target-database" value="DERBY"/>
-            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
-            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
-            <property name="eclipselink.logging.level" value="FINEST"/>
+            <!--<property name="hibernate.archive.autodetection" value="class" />-->
 
-            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
 
-            <!--property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sun-appserv-samples"/-->
-<!--            <property name="javax.persistence.jdbc.url" value="jdbc:derby:musicstoredb;create=true"/>-->
-            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:musicstoredb;create=true"/>
-            <property name="javax.persistence.jdbc.user" value="APP"/>
-            <property name="javax.persistence.jdbc.password" value="APP"/>
+            <!-- ** In-Memory tests ** -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+
+            <!-- ** Tests against a real database ** -->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/musicstore"/>-->
+            <!--<property name="hibernate.hbm2ddl.auto" value="validate" />-->
+            <!--<property name="javax.persistence.jdbc.user" value="sa"/>-->
+            <!--<property name="javax.persistence.jdbc.password" value=""/>-->
+
         </properties>
     </persistence-unit>
 </persistence>

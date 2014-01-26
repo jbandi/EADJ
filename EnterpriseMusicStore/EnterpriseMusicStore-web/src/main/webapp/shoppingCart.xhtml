@@ -11,23 +11,26 @@
 
     <ui:define name="content">
         <h2>Shopping Cart:</h2>
-        <h:form>
-            <h:panelGroup rendered="#{empty shoppingCartPresenter.albumsInCart}">
-                <em>Your cart is empty!</em>
-            </h:panelGroup>
-            <ul>
-                <ui:repeat value="#{shoppingCartPresenter.albumsInCart}" var="_album">
-                    <li>
-                        <a href="albumDetail.xhtml?id=#{_album.id}">
+
+        <h:panelGroup rendered="#{empty shoppingCartPresenter.albumsInCart}">
+            <em>Your cart is empty!</em>
+        </h:panelGroup>
+        <ul>
+            <ui:repeat value="#{shoppingCartPresenter.albumsInCart}" var="_album">
+                <li>
+                    <a href="albumDetail.xhtml?id=#{_album.id}">
                             <span>
                                 <h:outputText value="#{_album.name}" />
                             </span>
-                        </a>
-                    </li>
-                </ui:repeat>
-            </ul>
-            <h:outputText value="Total Amount: #{shoppingCartPresenter.totalAmount}" rendered="#{not empty shoppingCartPresenter.albumsInCart}"/>
-
+                    </a>
+                </li>
+            </ui:repeat>
+        </ul>
+        <h:outputText value="Total Amount: #{shoppingCartPresenter.totalAmount}" rendered="#{not empty shoppingCartPresenter.albumsInCart}"/>
+       <br/>
+       <br/>
+        <h:form>
+            <h:commandButton action="checkout.xhtml?faces-redirect=true" value="Checkout!"/>
         </h:form>
     </ui:define>
 </ui:composition>

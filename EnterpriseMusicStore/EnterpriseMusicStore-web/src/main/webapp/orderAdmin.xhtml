@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+
+    <ui:define name="content">
+        <h2>Orders:</h2>
+        <h:form>
+            <h:panelGroup rendered="#{empty orderAdminPresenter.musicOrders}" id="msg_nothing">
+                <em>Sorry, no orders!</em>
+            </h:panelGroup>
+            <ul>
+                <ui:repeat value="#{orderAdminPresenter.musicOrders}" var="_order">
+                    <li>
+                        <h:outputText value="#{_order.email}" />
+                    </li>
+                </ui:repeat>
+            </ul>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
