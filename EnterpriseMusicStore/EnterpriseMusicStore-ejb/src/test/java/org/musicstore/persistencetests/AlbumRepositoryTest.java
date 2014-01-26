@@ -59,10 +59,10 @@ public class AlbumRepositoryTest {
         AlbumRepositoryImpl albumRepositoryImpl = gloss.make(AlbumRepositoryImpl.class);
 
         AlbumBuilder albumBuilder = new AlbumBuilder(em);
-        albumBuilder.create().withName("Hells Bells").persist();
+        Album hellsBells = albumBuilder.create().withName("Hells Bells").persist();
         albumBuilder.create().withName("Chill Out Jazz").persist();
 
-        Album album = albumRepositoryImpl.getAlbum(1L);
+        Album album = albumRepositoryImpl.getAlbum(hellsBells.getId());
         assertEquals("Hells Bells", album.getName());
     }
 

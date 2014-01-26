@@ -54,6 +54,13 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>2.4.9</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Ugly: this has to be before javaee-api, otherwise tests will not run since javaee-api does not provide runnable classes -->
         <dependency>
             <groupId>org.jboss.spec.javax.faces</groupId>

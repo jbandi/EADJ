@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<dataset>
+
+    <GENRE
+            id="1"
+            name="HipHop"
+            />
+    <GENRE
+            id="2"
+            name="Rock"
+            />
+    <GENRE
+            id="3"
+            name="Jazz"
+            />
+    <GENRE
+            id="4"
+            name="RnB"
+            />
+
+</dataset>
