@@ -18,7 +18,6 @@ import org.musicstore.tests.support.GenreBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.io.InputStream;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
