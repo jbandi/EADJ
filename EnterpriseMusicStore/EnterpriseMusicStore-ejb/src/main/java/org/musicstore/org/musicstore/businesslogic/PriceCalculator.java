@@ -1,12 +1,19 @@
 package org.musicstore.org.musicstore.businesslogic;
 
 import org.musicstore.model.entities.Album;
+import org.musicstore.model.entities.MusicOrder;
+import org.musicstore.repositories.MusicOrderRepository;
 
-import javax.inject.Named;
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 
 public class PriceCalculator implements Serializable {
+
+    private static final double DISCOUNT_FACTOR = 0.9;
+
+    @Inject
+    MusicOrderRepository musicOrderRepository;
 
     public double calculatePrice(List<Album> albums) {
         double sum = 0;
@@ -16,4 +23,12 @@ public class PriceCalculator implements Serializable {
         return sum;
     }
 
+    public double calculatePrice(MusicOrder currentOrder) {
+
+        List<MusicOrder> previousOrders = musicOrderRepository.getOrdersByEmail(currentOrder.getEmail());
+        if (previousOrders.size() > 0)
+            return currentOrder.getTotalAmount() * DISCOUNT_FACTOR;
+        else
+            return currentOrder.getTotalAmount();
+    }
 }

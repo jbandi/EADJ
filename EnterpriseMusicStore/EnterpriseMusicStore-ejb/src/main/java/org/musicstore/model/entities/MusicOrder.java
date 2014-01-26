@@ -26,6 +26,8 @@ public class MusicOrder implements Serializable {
     private String zip;
     private String country;
 
+    private Double finalAmount;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn
     private List<OrderItem> orderItems = new ArrayList<>();
@@ -100,5 +102,24 @@ public class MusicOrder implements Serializable {
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
+    }
+
+    public Double getFinalAmount() {
+
+        if (finalAmount == null)
+            return getTotalAmount();
+        return finalAmount;
+    }
+
+    public void setFinalAmount(Double finalAmount) {
+        this.finalAmount = finalAmount;
+    }
+
+    public Double getTotalAmount(){
+        Double sum = 0d;
+        for(OrderItem orderItem : orderItems) {
+            sum += orderItem.getPrice();
+        }
+        return sum;
     }
 }

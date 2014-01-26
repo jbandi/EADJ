@@ -1,16 +1,21 @@
 package org.musicstore;
 
+import org.musicstore.model.entities.Album;
 import org.musicstore.model.entities.MusicOrder;
+import org.musicstore.model.entities.OrderItem;
+import org.musicstore.org.musicstore.businesslogic.PriceCalculator;
 
 import javax.ejb.Local;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.util.List;
 
-@Stateless
+@Stateful
+@SessionScoped
 @Local(OrderService.class)
 public class OrderServiceImpl implements OrderService, Serializable {
 
@@ -20,11 +25,44 @@ public class OrderServiceImpl implements OrderService, Serializable {
     @Inject
     private ShoppingCartService shoppingCartService;
 
+    private PriceCalculator priceCalculator;
+
+    @Inject
+    public void setPriceCalculator(PriceCalculator priceCalculator) {
+        this.priceCalculator = priceCalculator;
+    }
+
+    private MusicOrder currentOrder;
+
     @Override
-    public void submitOrder(MusicOrder order) {
-        em.persist(order);
+    public MusicOrder getCurrentOrder() {
+        if (currentOrder == null)
+            currentOrder = new MusicOrder();
+
+        return currentOrder;
+    }
+
+    @Override
+    public MusicOrder createOrder() {
+        for(Album album : shoppingCartService.getAlbumsInCart()) {
+            OrderItem orderItem = new OrderItem();
+            orderItem.setAlbum(album);
+            currentOrder.getOrderItems().add(orderItem);
+        }
+
+        double finalAmount = priceCalculator.calculatePrice(currentOrder);
+        currentOrder.setFinalAmount(finalAmount);
+
+        return currentOrder;
+    }
+
+    @Override
+    public void submitOrder() {
+        currentOrder.setFinalAmount(currentOrder.getTotalAmount());
+        em.persist(currentOrder);
 
         shoppingCartService.notifyOrderSubmitted();
+        currentOrder = null;
     }
 
     @Override

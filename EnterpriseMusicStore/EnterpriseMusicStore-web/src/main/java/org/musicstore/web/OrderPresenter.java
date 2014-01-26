@@ -18,22 +18,21 @@ public class OrderPresenter implements Serializable {
     @Inject ShoppingCartService shoppingCartService;
     @Inject OrderService orderService;
 
-    private MusicOrder musicOrder = new MusicOrder();
+    public String createOrder(){
+
+        orderService.createOrder();
+
+        return "orderSubmission.xhtml?faces-redirect=true";
+    }
 
     public String submitOrder(){
 
-        for(Album album : shoppingCartService.getAlbumsInCart()) {
-            OrderItem orderItem = new OrderItem();
-            orderItem.setAlbum(album);
-            musicOrder.getOrderItems().add(orderItem);
-        }
-
-        orderService.submitOrder(musicOrder);
+        orderService.submitOrder();
 
         return "orderConfirmation.xhtml?faces-redirect=true";
     }
 
     public MusicOrder getMusicOrder() {
-        return musicOrder;
+        return orderService.getCurrentOrder();
     }
 }

@@ -29,4 +29,7 @@ public class OrderItem implements Serializable {
         this.album = album;
     }
 
+    public Double getPrice() {
+        return album.getPrice();
+    }
 }

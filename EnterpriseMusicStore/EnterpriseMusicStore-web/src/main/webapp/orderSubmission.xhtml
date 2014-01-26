@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+
+
+
+    <ui:define name="content">
+        <h2>Order Submission:</h2>
+
+        <h:panelGrid columns="2">
+            <h:outputText value="Your order will be sent to: " />
+            <h:outputText id="email" value="#{orderPresenter.musicOrder.email}" size="30"/>
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+            <h:outputText value="Total Amount: " />
+            <h:outputText id="total_amount" value="#{orderPresenter.musicOrder.totalAmount}" size="30"/>
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+            <h:outputText value="We charge you: " />
+            <h:outputText id="final_amount" value="#{orderPresenter.musicOrder.finalAmount}" size="30"/>
+        </h:panelGrid>
+
+        <br/>
+
+        <h:form>
+            <h:commandButton action="#{orderPresenter.submitOrder()}" value="Next!"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
