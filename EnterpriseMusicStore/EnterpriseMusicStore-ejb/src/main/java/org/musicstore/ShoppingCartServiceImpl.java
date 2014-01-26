@@ -44,6 +44,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService, Serializabl
         double sum = priceCalculator.calculatePrice(albumsInCart);
         return sum;
     }
-    
-    
+
+    @Override
+    public void notifyOrderSubmitted() {
+        albumsInCart = new ArrayList<>();
+    }
 }
