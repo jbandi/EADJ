@@ -1,7 +1,7 @@
 package org.musicstore.web;
 
 import org.musicstore.model.entities.MusicOrder;
-import org.musicstore.repositories.MusicOrderRepositoryImpl;
+import org.musicstore.repositories.MusicOrderRepository;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -16,7 +16,7 @@ import java.util.List;
 public class OrderAdminPresenter implements Serializable {
 
     @Inject
-    MusicOrderRepositoryImpl musicOrderRepository;
+    MusicOrderRepository musicOrderRepository;
 
     private List<MusicOrder> musicOrders = new ArrayList<>();
 

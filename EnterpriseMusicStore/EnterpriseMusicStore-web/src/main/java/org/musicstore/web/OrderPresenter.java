@@ -5,7 +5,6 @@ import org.musicstore.ShoppingCartService;
 import org.musicstore.model.entities.Album;
 import org.musicstore.model.entities.MusicOrder;
 import org.musicstore.model.entities.OrderItem;
-import org.musicstore.repositories.MusicOrderRepositoryImpl;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;

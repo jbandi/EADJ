@@ -14,7 +14,7 @@ import java.util.List;
 //@Stateless
 //@Remote(GenreRepository.class)
 @Named
-public class MusicOrderRepositoryImpl implements Serializable {
+public class MusicOrderRepository implements Serializable {
     
     @PersistenceContext(unitName="EnterpriseMusicStore")
     private EntityManager em;
