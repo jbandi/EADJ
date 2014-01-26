@@ -10,31 +10,31 @@
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputText value="First Name" />
-                <h:inputText id="firstName" value="#{orderPresenter.musicOrder.firstName}" required="true" size="30"/>
+                <h:inputText id="firstName" value="#{orderPresenter.musicOrder.firstName}" size="30"/>
             </h:panelGrid>
             <h:panelGrid columns="2">
                 <h:outputText value="Last Name"/>
-                <h:inputText id="lastName" value="#{orderPresenter.musicOrder.lastName}" required="true" size="30"/>
+                <h:inputText id="lastName" value="#{orderPresenter.musicOrder.lastName}" size="30"/>
             </h:panelGrid>
             <h:panelGrid columns="2">
                 <h:outputText value="Email"/>
-                <h:inputText id="email" value="#{orderPresenter.musicOrder.email}" required="true" size="30"/>
+                <h:inputText id="email" value="#{orderPresenter.musicOrder.email}" size="30"/>
             </h:panelGrid>
             <h:panelGrid columns="2">
                 <h:outputText value="Street"/>
-                <h:inputText id="street" value="#{orderPresenter.musicOrder.street}" required="true" size="30"/>
+                <h:inputText id="street-address" value="#{orderPresenter.musicOrder.street}" size="30"/>
             </h:panelGrid>
             <h:panelGrid columns="2">
                 <h:outputText value="City"/>
-                <h:inputText id="city" value="#{orderPresenter.musicOrder.city}" required="true" size="30"/>
+                <h:inputText id="city" value="#{orderPresenter.musicOrder.city}" size="30"/>
             </h:panelGrid>
             <h:panelGrid columns="2">
                 <h:outputText value="Zip"/>
-                <h:inputText id="zip" value="#{orderPresenter.musicOrder.zip}" required="true" size="30"/>
+                <h:inputText id="zip" value="#{orderPresenter.musicOrder.zip}" size="30"/>
             </h:panelGrid>
             <h:panelGrid columns="2">
                 <h:outputText value="Country"/>
-                <h:inputText id="country" value="#{orderPresenter.musicOrder.country}" required="true" size="30"/>
+                <h:inputText id="country" value="#{orderPresenter.musicOrder.country}" size="30"/>
             </h:panelGrid>
             <br/>
             <h:commandButton action="#{orderPresenter.submitOrder}" value="Submit!"/>
