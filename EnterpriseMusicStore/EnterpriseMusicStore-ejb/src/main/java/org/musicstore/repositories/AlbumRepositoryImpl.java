@@ -14,7 +14,8 @@ import javax.persistence.criteria.Root;
 import org.musicstore.model.entities.Album;
 
 @Stateless
-@Local(AlbumRepository.class)
+@Local(AlbumRepositoryLocal.class)
+@Remote(AlbumRepository.class)
 public class AlbumRepositoryImpl implements AlbumRepository, Serializable {
 
     @PersistenceContext(unitName = "EnterpriseMusicStore")

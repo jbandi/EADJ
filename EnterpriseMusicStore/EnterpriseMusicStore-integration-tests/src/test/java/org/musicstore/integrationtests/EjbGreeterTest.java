@@ -4,14 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.musicstore.Greeter;
 
-import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
 
-public class AppTest {
+public class EjbGreeterTest {
 
     InitialContext jndi;
 
@@ -20,7 +18,6 @@ public class AppTest {
 
         jndi = JBossUtil.createInitialContext();
     }
-
 
     @Test
     public void hello() throws NamingException {

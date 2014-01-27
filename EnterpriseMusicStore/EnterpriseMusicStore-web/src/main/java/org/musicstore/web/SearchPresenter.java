@@ -22,7 +22,7 @@ public class SearchPresenter {
     // @PostConstruct
     public void performSearch(){
         AlbumQuery albumQuery = new AlbumQuery();
-        albumQuery.setName(title);
+        albumQuery.setTitle(title);
         albumQuery.setGenreName(genreName);
 
         result = albumRepository.getAlbums(albumQuery);

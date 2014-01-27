@@ -82,7 +82,7 @@ public class AlbumRepositoryTest {
         albumBuilder.create().withName("Black 2010").withGenre(rnb).persist();
 
         final AlbumQuery albumQuery = new AlbumQuery();
-        albumQuery.setName("Hells Bells");
+        albumQuery.setTitle("Hells Bells");
 
         List<Album> albums = albumRepositoryImpl.getAlbums(albumQuery);
         assertEquals(1, albums.size());

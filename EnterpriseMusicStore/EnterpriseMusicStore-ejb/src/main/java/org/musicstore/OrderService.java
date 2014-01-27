@@ -12,4 +12,5 @@ public interface OrderService {
     public MusicOrder createOrder();
     public void submitOrder();
 
+    List<MusicOrder> getOrderByEmail(String email);
 }

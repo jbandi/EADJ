@@ -20,7 +20,7 @@ public class AlbumQuery implements Serializable {
         return title;
     }
 
-    public void setName(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

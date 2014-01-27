@@ -4,9 +4,10 @@ import org.musicstore.model.entities.Album;
 import org.musicstore.model.entities.MusicOrder;
 import org.musicstore.model.entities.OrderItem;
 import org.musicstore.businesslogic.PriceCalculator;
+import org.musicstore.repositories.MusicOrderRepository;
 
-import javax.ejb.EJB;
 import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -17,7 +18,8 @@ import java.util.List;
 
 @Stateful
 @SessionScoped
-@Local(OrderService.class)
+@Local(OrderServiceLocal.class)
+@Remote(OrderService.class)
 public class OrderServiceImpl implements OrderService, Serializable {
 
     @PersistenceContext(unitName = "EnterpriseMusicStore")
@@ -25,6 +27,9 @@ public class OrderServiceImpl implements OrderService, Serializable {
 
     @Inject
     ShoppingCartService shoppingCartService;
+
+    @Inject
+    MusicOrderRepository orderRepository;
 
     @Inject
     PriceCalculator priceCalculator;
@@ -68,7 +73,11 @@ public class OrderServiceImpl implements OrderService, Serializable {
 
     @Override
     public List<MusicOrder> getAllOrders(){
-        List<MusicOrder> resultList = em.createNamedQuery(MusicOrder.FIND_ALL).getResultList();
-        return resultList;
+        return orderRepository.getOrders();
+    }
+
+    @Override
+    public List<MusicOrder> getOrderByEmail(String email) {
+        return orderRepository.getOrdersByEmail(email);
     }
 }
