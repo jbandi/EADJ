@@ -30,7 +30,7 @@ public class OrderCreationTest {
 
         String testEmail = UUID.randomUUID() + "@test.org";
         List<MusicOrder> nonExistingOrders = orderService.getOrderByEmail(testEmail);
-        assertNull(nonExistingOrders);
+        assertEquals(0, nonExistingOrders.size());
 
         MusicOrder currentOrder = orderService.getCurrentOrder();
         assertNotNull(currentOrder);
