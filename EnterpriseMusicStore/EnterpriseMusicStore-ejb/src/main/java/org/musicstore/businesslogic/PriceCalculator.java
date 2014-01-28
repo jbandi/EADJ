@@ -12,8 +12,12 @@ public class PriceCalculator implements Serializable {
 
     public static final double DISCOUNT_FACTOR = 0.9;
 
-    @Inject
     MusicOrderRepository musicOrderRepository;
+
+    @Inject
+    public PriceCalculator(MusicOrderRepository musicOrderRepository) {
+        this.musicOrderRepository = musicOrderRepository;
+    }
 
     public double calculatePrice(List<Album> albums) {
         double sum = 0;

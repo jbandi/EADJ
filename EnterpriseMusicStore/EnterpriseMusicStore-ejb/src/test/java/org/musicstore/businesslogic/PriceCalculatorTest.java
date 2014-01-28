@@ -32,8 +32,8 @@ public class PriceCalculatorTest {
         when(orderRepositoryMock.getOrdersByEmail(anyString())).thenReturn(new ArrayList<MusicOrder>());
 
         // Arrange the subject under test
-        PriceCalculator priceCalculator = new PriceCalculator();
-        priceCalculator.musicOrderRepository = orderRepositoryMock; // Poor man's dependency injection: package private fields
+        PriceCalculator priceCalculator = new PriceCalculator(orderRepositoryMock);
+        //priceCalculator.musicOrderRepository = orderRepositoryMock; // Alternative Poor man's dependency injection: package private fields
 
         // Trigger the actual test
         Double calculatePrice = priceCalculator.calculatePrice(order);
