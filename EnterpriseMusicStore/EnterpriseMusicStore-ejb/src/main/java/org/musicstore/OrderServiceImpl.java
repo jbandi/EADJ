@@ -9,6 +9,8 @@ import org.musicstore.repositories.MusicOrderRepository;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -17,10 +19,13 @@ import java.io.Serializable;
 import java.util.List;
 
 @Stateful
-@SessionScoped
+@ConversationScoped
 @Local(OrderServiceLocal.class)
 @Remote(OrderService.class)
 public class OrderServiceImpl implements OrderService, Serializable {
+
+    @Inject
+    private Conversation conversation;
 
     @PersistenceContext(unitName = "EnterpriseMusicStore")
     private EntityManager em;
@@ -38,6 +43,7 @@ public class OrderServiceImpl implements OrderService, Serializable {
 
     @Override
     public MusicOrder getCurrentOrder() {
+
         if (currentOrder == null)
             currentOrder = new MusicOrder();
 
@@ -67,8 +73,8 @@ public class OrderServiceImpl implements OrderService, Serializable {
         currentOrder.setFinalAmount(currentOrder.getTotalAmount());
         em.persist(currentOrder);
 
-        shoppingCartService.notifyOrderSubmitted();
         currentOrder = null;
+        conversation.end();
     }
 
     @Override

@@ -18,7 +18,9 @@
                       <h:outputLink value="index.xhtml">Home</h:outputLink>
                   </li>
                   <li>
-                      <h:outputLink value="shoppingCart.xhtml">Cart (#{shoppingCartPresenter.albumsInCart.size()})</h:outputLink>
+                      <h:outputLink value="shoppingCart.xhtml">Cart (#{shoppingCartPresenter.albumsInCart.size()})
+                          <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                      </h:outputLink>
                   </li>
                   <li>
                       <h:outputLink value="orderAdmin.xhtml">Admin</h:outputLink>
@@ -30,12 +32,15 @@
                 <h:form>
                 <br/>
                 <h:inputText id="q" value="#{searchPresenter.title}"/>
-                <h:commandButton id="search" action="albumSearch.xhtml?faces-redirect=true&amp;includeViewParams=true" value="Search"/>
+                <h:commandButton id="search" action="albumSearch.xhtml?faces-redirect=true" value="Search"/>
                 <br/>
                 <h3>Genres</h3>
                 <h:dataTable var="_genre" value="#{genrePresenter.genres}" >
                      <h:column>
-                        <h:outputLink value="albumSearch.xhtml?genre=#{_genre.name}">#{_genre.name}</h:outputLink>
+                        <h:outputLink value="albumSearch.xhtml">#{_genre.name}
+                            <f:param name="genre" value="#{_genre.name}"/>
+                            <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+                        </h:outputLink>
                      </h:column>
                 </h:dataTable>
                 </h:form>

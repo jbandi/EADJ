@@ -4,17 +4,24 @@ import org.musicstore.model.entities.Album;
 import org.musicstore.businesslogic.PriceCalculator;
 import org.musicstore.repositories.AlbumRepository;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Local;
 import javax.ejb.Stateful;
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Stateful @SessionScoped
+@Stateful
+@ConversationScoped
 @Local(ShoppingCartService.class)
 public class ShoppingCartServiceImpl implements ShoppingCartService, Serializable {
+
+    @Inject
+    private Conversation conversation;
 
     @Inject
     private AlbumRepository albumRepository;
@@ -27,6 +34,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService, Serializabl
     }
 
     private List<Album> albumsInCart = new ArrayList<>();
+
+    @PostConstruct
+    public void init() {
+        if (conversation.isTransient())
+            conversation.begin();
+    }
 
     @Override
     public void addAlbum(Album album) {
@@ -43,10 +56,5 @@ public class ShoppingCartServiceImpl implements ShoppingCartService, Serializabl
 
         double sum = priceCalculator.calculatePrice(albumsInCart);
         return sum;
-    }
-
-    @Override
-    public void notifyOrderSubmitted() {
-        albumsInCart = new ArrayList<>();
     }
 }

@@ -20,12 +20,14 @@
             <ul id="album-list">
                 <ui:repeat value="#{searchPresenter.result}" var="_album">
                     <li>
-                        <a href="albumDetail.xhtml?id=#{_album.id}">
+                        <h:link outcome="albumDetail.xhtml" value="">
+                            <f:param name="id" value="#{_album.id}"/>
+                            <f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
                             <h:graphicImage value="/resources/gfx/#{_album.albumArtUrl}" alt="#{_album.name}"/>
                             <span>
                                 <h:outputText value="#{_album.name}" />
                             </span>
-                        </a>
+                        </h:link>
                     </li>
                 </ui:repeat>
             </ul>

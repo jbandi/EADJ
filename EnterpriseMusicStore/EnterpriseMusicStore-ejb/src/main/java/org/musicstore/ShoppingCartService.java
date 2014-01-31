@@ -7,6 +7,4 @@ public interface ShoppingCartService {
     public void addAlbum(Album album);
     public List<Album> getAlbumsInCart();
     public double getTotalAmount();
-
-    public void notifyOrderSubmitted();
 }
