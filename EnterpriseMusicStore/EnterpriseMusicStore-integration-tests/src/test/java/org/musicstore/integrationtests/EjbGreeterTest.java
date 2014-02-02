@@ -21,7 +21,7 @@ public class EjbGreeterTest {
 
     @Test
     public void hello() throws NamingException {
-        Greeter greeter = (Greeter) jndi.lookup("ejb:EnterpriseMusicStore-ear/EnterpriseMusicStoreEJB//GreeterService!org.musicstore.Greeter");
+        Greeter greeter = (Greeter) jndi.lookup("ejb:EnterpriseMusicStore/EnterpriseMusicStoreEJB//GreeterService!org.musicstore.Greeter");
 
         assertEquals("Greetings from EJB!", greeter.getMessage());
     }

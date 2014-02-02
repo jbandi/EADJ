@@ -22,7 +22,7 @@ public class AlbumSearchTest {
 
         jndi = JBossUtil.createInitialContext();
 
-        albumRepository = (AlbumRepository) jndi.lookup("ejb:EnterpriseMusicStore-ear/EnterpriseMusicStoreEJB//AlbumRepositoryImpl!org.musicstore.repositories.AlbumRepository");
+        albumRepository = (AlbumRepository) jndi.lookup("ejb:EnterpriseMusicStore/EnterpriseMusicStoreEJB//AlbumRepositoryImpl!org.musicstore.repositories.AlbumRepository");
     }
 
     @Test

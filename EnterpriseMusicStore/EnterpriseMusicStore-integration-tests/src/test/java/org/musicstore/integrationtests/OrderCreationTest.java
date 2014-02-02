@@ -22,7 +22,7 @@ public class OrderCreationTest {
 
         jndi = JBossUtil.createInitialContext();
 
-        orderService = (OrderService) jndi.lookup("ejb:EnterpriseMusicStore-ear/EnterpriseMusicStoreEJB//OrderServiceImpl!org.musicstore.OrderService?stateful");
+        orderService = (OrderService) jndi.lookup("ejb:EnterpriseMusicStore/EnterpriseMusicStoreEJB//OrderServiceImpl!org.musicstore.OrderService?stateful");
     }
 
     @Test
