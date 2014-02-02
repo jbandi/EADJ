@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="jbandi (generated)" id="1391260883907-8">
+        <insert tableName="GENRE">
+            <column name="ID" valueNumeric="1"/>
+            <column name="NAME" value="Rock"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1391260883907-9">
+        <insert tableName="GENRE">
+            <column name="ID" valueNumeric="2"/>
+            <column name="NAME" value="Jazz"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1391260883907-10">
+        <insert tableName="GENRE">
+            <column name="ID" valueNumeric="3"/>
+            <column name="NAME" value="Pop"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="jbandi (generated)" id="1391260883907-5">
+        <insert tableName="ALBUM">
+            <column name="ID" valueNumeric="4"/>
+            <column name="ALBUMARTURL" value="hells_bells.jpg"/>
+            <column name="NAME" value="Hells Bells"/>
+            <column name="PRICE" valueNumeric="10.0"/>
+            <column name="TOTALAMOUNT" valueNumeric="0.0"/>
+            <column name="GENRE_ID" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1391260883907-6">
+        <insert tableName="ALBUM">
+            <column name="ID" valueNumeric="5"/>
+            <column name="ALBUMARTURL" value="torch_songs.jpg"/>
+            <column name="NAME" value="Torch Songs"/>
+            <column name="PRICE" valueNumeric="12.0"/>
+            <column name="TOTALAMOUNT" valueNumeric="0.0"/>
+            <column name="GENRE_ID" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+    <changeSet author="jbandi (generated)" id="1391260883907-7">
+        <insert tableName="ALBUM">
+            <column name="ID" valueNumeric="6"/>
+            <column name="ALBUMARTURL" value="beautiful_garbage.jpg"/>
+            <column name="NAME" value="Beautiful Garbage"/>
+            <column name="PRICE" valueNumeric="9.0"/>
+            <column name="TOTALAMOUNT" valueNumeric="0.0"/>
+            <column name="GENRE_ID" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

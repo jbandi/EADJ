@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>EnterpriseMusicStore</artifactId>
@@ -13,7 +14,7 @@
     <name>EnterpriseMusicStore-integration-tests</name>
     <url>http://maven.apache.org</url>
 
-     <dependencies>
+    <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -25,6 +26,14 @@
             <groupId>org.musicstore</groupId>
             <artifactId>EnterpriseMusicStore-ejb</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- DB driver for Liquibase -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.3.159</version>
             <scope>test</scope>
         </dependency>
 
@@ -46,8 +55,8 @@
             <scope>runtime</scope>
         </dependency>
 
-          <!-- JBoss EJB client API jar. We use runtime scope because the EJB client API
-         isn't directly used in this example. We just need it in our runtime classpath -->
+        <!-- JBoss EJB client API jar. We use runtime scope because the EJB client API
+       isn't directly used in this example. We just need it in our runtime classpath -->
         <dependency>
             <groupId>org.jboss</groupId>
             <artifactId>jboss-ejb-client</artifactId>
@@ -110,10 +119,32 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>  
-        </plugins>      
+            </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <skip>false</skip>
+                    <changeLogFile>src/test/resources/dbmigration/musicstoredb.xml</changeLogFile>
+                    <driver>org.h2.Driver</driver>
+                    <url>jdbc:h2:tcp://localhost/~/musicstore</url>
+                    <username>sa</username>
+                    <password></password>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>dropAll</goal>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
-    
+
     <repositories>
         <repository>
             <id>java.net2</id>
