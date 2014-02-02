@@ -1,6 +1,7 @@
 package org.musicstore.web;
 
 import org.musicstore.OrderService;
+import org.musicstore.OrderServiceLocal;
 import org.musicstore.ShoppingCartService;
 import org.musicstore.model.entities.Album;
 import org.musicstore.model.entities.MusicOrder;
@@ -16,7 +17,7 @@ import java.io.Serializable;
 public class OrderPresenter implements Serializable {
 
     @Inject ShoppingCartService shoppingCartService;
-    @Inject OrderService orderService;
+    @Inject OrderServiceLocal orderService;
 
     public String createOrder(){
 
